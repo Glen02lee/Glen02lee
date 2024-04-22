@@ -1,0 +1,50 @@
+public class PalindromeChecker {
+    public static void main(String[] args) {
+        String str1 = "racecar";
+        String str2 = "hello";
+        String str3 = "A man, a plan, a canal, Panama!";
+
+        System.out.println(str1 + " is a palindrome: " + isPalindrome(str1));
+        System.out.println(str2 + " is a palindrome: " + isPalindrome(str2));
+        System.out.println(str3 + " is a palindrome: " + isPalindrome(str3));
+    }
+
+    // 회문 판별 함수
+    public static boolean isPalindrome(String str) {
+        // 문자열에서 알파벳만 추출하여 소문자로 변환
+        String refinedStr = refineString(str);
+
+        // 회문 판별
+        int left = 0;
+        int right = refinedStr.length() - 1;
+
+        while (left < right) {
+            if (refinedStr.charAt(left) != refinedStr.charAt(right)) {
+                return false; // 일치하지 않으면 회문이 아님
+            }
+            left++;
+            right--;
+        }
+
+        return true; // 모두 일치하면 회문
+    }
+
+    // 문자열 정제 함수: 알파벳만 추출하여 소문자로 변환
+    private static String refineString(String str) {
+        StringBuilder sb = new StringBuilder();
+
+        for (char ch : str.toLowerCase().toCharArray()) {
+            if (Character.isLetter(ch)) {
+                sb.append(ch);
+            }
+        }
+
+        return sb.toString();
+    }
+}
+
+/*
+주어진 문자열이 회문인지 판별하는 함수
+회문(Palindrome)은 앞으로 읽으나 뒤로 읽으나 동일한 문자열을 말함.
+대소문자를 구분하지 않으며, 공백 또는 특수문자는 무시합니다.
+*/
